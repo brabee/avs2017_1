@@ -28,35 +28,50 @@
 				<!-- Modal Body -->
 				<div class="modal-body">
 
-					<form class="form-horizontal" role="form">
-						<div class="form-group">
+					<form class="form-horizontal" role="form" method="POST" action="{{ route('login') }}">
+						{{ csrf_field() }}
+						<div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
 							<label  class="col-sm-2 control-label"
 							        for="inputEmail3">Email</label>
 							<div class="col-sm-10">
 								<input type="email" class="form-control"
-								       id="inputEmail3" placeholder="Email"/>
+								       id="inputEmail3" value="{{ old('email') }}" placeholder="Email" required autofocus>
+								@if ($errors->has('email'))
+									<span class="help-block">
+                                        <strong>{{ $errors->first('email') }}</strong>
+                                    </span>
+								@endif
 							</div>
 						</div>
-						<div class="form-group">
+						<div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
 							<label class="col-sm-2 control-label"
-							       for="inputPassword3" >Password</label>
+							       for="inputPassword3" >Heslo</label>
 							<div class="col-sm-10">
 								<input type="password" class="form-control"
-								       id="inputPassword3" placeholder="Password"/>
+								       id="inputPassword3" placeholder="Password" required>
+
+								@if ($errors->has('password'))
+									<span class="help-block">
+                                        <strong>{{ $errors->first('password') }}</strong>
+                                    </span>
+								@endif
 							</div>
 						</div>
 						<div class="form-group">
 							<div class="col-sm-offset-2 col-sm-10">
 								<div class="checkbox">
 									<label>
-										<input type="checkbox"/> Remember me
+										<input type="checkbox" {{ old('remember') ? 'checked' : '' }}> Zapamätať prihlásenie
 									</label>
 								</div>
 							</div>
 						</div>
 						<div class="form-group">
 							<div class="col-sm-offset-2 col-sm-10">
-								<button type="submit" class="btn btn-default">Sign in</button>
+								<button type="submit" class="btn btn-default">Prihlásiť</button>
+								<a class="btn btn-link" href="{{ route('password.request') }}">
+									Zabudol si heslo?
+								</a>
 							</div>
 						</div>
 					</form>
