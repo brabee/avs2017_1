@@ -9,10 +9,10 @@ class FormModalController extends Controller
 
 	public function logregmodal()
 	{
-		// return view('loginmodal');
 		return view('auth/logregmodal');
 	}
 
+	/*
 	public function loginmodal()
 	{
 		// return view('loginmodal');
@@ -24,4 +24,5 @@ class FormModalController extends Controller
 		// return view('registermodal');
 		return view('auth/registermodal');
 	}
+	*/
 }
