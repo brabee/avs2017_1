@@ -2,7 +2,7 @@
 
 @section('content')
 	<!-- Modal -->
-	<div class="modal fade" id="loginModal" tabindex="-1" role="dialog"
+	<div class="modal fade" id="registerModal" tabindex="-1" role="dialog"
 	     aria-labelledby="myModalLabel" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
@@ -15,7 +15,7 @@
 						<span class="sr-only">Close</span>
 					</button>
 					<h4 class="modal-title" id="myModalLabel">
-						Prihlásenie do zákazok
+						Registrácia nového užívateľa
 					</h4>
 				</div>
 
