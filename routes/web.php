@@ -17,26 +17,34 @@ Route::get('/', function () {
 */
 
 /*
-Route::get('/loginmodal', 'FormModalController@loginmodal');
-Route::get('/registermodal', 'FormModalController@registermodal');
-*/
-Route::get('/', 'FormModalController@logregmodal');
+$users = \App\User::create([
+	'name' => 'i have name 1',
+	'email' => 'i@have.name1',
+	'password' => bcrypt('12345')
+]);
 
-/*
-Route::get('/', function () {
-	return view('auth/loginmodal');
-});
+// vypise $users vo formate pole
+echo '<pre>';
+print_r( $users->toArray() );
+echo '<pre>';
 */
-/*
-Route::get('/', function () {
-	return view('auth/registermodal');
-});
-*/
-
-Auth::routes();
 
 // Route::get('/home', 'HomeController@index');
-Route::get('/zakazky', 'HomeController@index');
+
+// * Register the typical authentication routes for an application.
+Auth::routes();
+// prihlasovacie modalne okno
+Route::get('/', 'FormModalController@logregmodal')->name('root');
+
+// route na prijem zakazky
+Route::get('prijem', 'HomeController@prijem');
+
+// json pre users
+//Route::get('users','HomeController@jsonUsers');
+
+// json pre customers
+Route::get('customers/{id?}', 'HomeController@jsonCustomers');
+
 
 
 

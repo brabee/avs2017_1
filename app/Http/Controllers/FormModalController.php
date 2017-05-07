@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use Illuminate\Http\Request;
 
 class FormModalController extends Controller
@@ -9,20 +10,16 @@ class FormModalController extends Controller
 
 	public function logregmodal()
 	{
-		return view('auth/logregmodal');
-	}
-
-	/*
-	public function loginmodal()
-	{
-		// return view('loginmodal');
-		return view('auth/loginmodal');
-	}
-
-	public function registermodal()
-	{
-		// return view('registermodal');
-		return view('auth/registermodal');
-	}
+		/*
+		$users = User::all();
+		return $users;
 	*/
+
+		return view('auth/logregmodal');
+
+
+
+	}
+
 }
+

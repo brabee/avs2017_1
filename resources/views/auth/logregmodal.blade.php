@@ -13,7 +13,7 @@
 						×</button>
 					<h4 class="modal-title" id="myModalLabel">
 						Prihlásenie / registrácia do zákazok
-						<a href="http://www.jquery2dotnet.com">jquery2dotnet.com</a>
+						{{--<a href="http://www.jquery2dotnet.com">jquery2dotnet.com</a>--}}
 					</h4>
 				</div>
 				<div class="modal-body">

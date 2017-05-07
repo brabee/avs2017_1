@@ -1,0 +1,443 @@
+
+/* Floating labels - CSS only   */
+/* http://codepen.io/Sector22/pen/myEbzQ */
+
+
+body {
+  font-family: "Calibri", Helvetica, Arial;
+  font-size: 1em;
+}
+
+form {
+  padding-top: 0em;
+  min-width: 440px;
+  max-width: 800px;
+  width: 100%;
+  /*margin: auto; */
+  border: 0px;
+  background-color: #f0eff5;
+  /* easeInOutQuart */
+  opacity: 0;
+    -webkit-animation: fadeIn 0.5s cubic-bezier(0.165, 0.84, 0.44, 1) 0.175s 1 normal forwards;
+          animation: fadeIn 0.5s cubic-bezier(0.165, 0.84, 0.44, 1) 0.175s 1 normal forwards;
+}
+
+form fieldset {
+  display: block;
+  border: 0px;
+  padding: 0;
+
+}
+ form fieldset .input-container:last-child {
+  border-bottom-width: 1px; 
+}
+form legend {
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  padding-left: 0px;
+  font-weight: bold;
+  color: #FFFFFF;
+  background-color: #3973ac;
+  border-bottom: 1px solid #71767C;
+  width: 100%;
+  height: 2.2em;
+  line-height: 2.2em;
+}
+form .input-container {
+  position: relative;
+  height: 2.9em;
+  border: 0px solid #c2c2d6;
+  border-bottom-width: 1px;
+}
+form .input-container1 {
+  position: relative;
+  height: 5.7em;
+  border: 0px solid #c2c2d6;
+  border-bottom-width: 1px;
+}
+form .input_container2 {
+  position: relative;
+  color: #FFFFFF;
+  background-color: #3973ac;
+  /*border-bottom: 1px solid #71767C; */
+  width: 100%;
+  height: 8em;
+  line-height: 8em;
+  /* 
+  box-sizing: border-box;
+  display: inline-block;
+  */
+}
+
+/* POZRI VYSVETLENIE   http://jsfiddle.net/ps5vx/    */
+/* float pozicia formularoveho pola - VLAVO */
+form #container_zakaznik_priezvisko, form #container_zakaznik_meno, 
+    form #container_obec_nazov, form #container_psc, form #container_ulica, 
+    form #email, form #container_telefon, 
+    form #container_zakaznik_firma_ico, 
+    form #container_vyrobok_model, form #container_vyrobok_cislo,
+    form #container_vyrobok_dat_predaja, form #container_vyrobok_kategoria,
+    form #container_datum_prijmu, form #container_bude_opravene, form #container_cena_odhad
+    {
+  float: left;
+  box-sizing: border-box;
+  display: inline-block;
+  border-right-width: 1px;
+}
+
+/* float pozicia formularoveho pola - VPRAVO */
+form #container_titul, form #container_zakaznik_firma_meno, form #container_cislo_domu, form #container_fax,
+  form #container_vyrobok_napatie, form #container_vyrobok_vyrobca,
+  form #container_prijem_zaloha
+  {
+  float: right;
+  box-sizing: border-box;
+  display: inline-block;
+}
+
+/* float pozicia pola NAPRAVO  - vykona clear both */
+form #container_titul + *, form #container_zakaznik_firma_meno + *, form #container_cislo_domu + *, form #container_fax + *,
+  form #container_vyrobok_napatie + *, form #container_vyrobok_vyrobca + *,
+  form #container_prijem_zaloha + *
+   {
+  clear: both;
+}
+
+/* odsunutie textu od laveho okraja, netyka s formularoveho pola umiestneneho celkom vlavo */
+form #container_zakaznik_meno label, form #container_zakaznik_meno input, form #container_psc label, form #container_psc input, 
+      form #email label, form #email input, form #container_titul label, form #container_titul input, 
+      form #container_ulica label, form #container_ulica input, form #container_fax label, form #container_fax input, form #container_zakaznik_firma_meno label, form #container_zakaznik_firma_meno input, 
+      form #container_cislo_domu label, form #container_cislo_domu input,
+      form #container_vyrobok_model label, form #container_vyrobok_model input, form #container_vyrobok_napatie label, form #container_vyrobok_napatie input,
+      form #container_vyrobok_kategoria label, form #container_vyrobok_kategoria input, form #container_vyrobok_vyrobca label, form #container_vyrobok_vyrobca input,
+      form #container_bude_opravene label, form #container_bude_opravene input, form #container_cena_odhad label, form #container_cena_odhad input, 
+      form #container_prijem_zaloha label, form #container_prijem_zaloha input
+      {
+  padding: 1px 0.4em 1px 0.4em;
+}
+
+
+
+/* sirky formularovych prvkov */
+form #container_zakaznik_priezvisko, form #container_zakaznik_meno, 
+    form #container_obec_nazov, form #container_ulica, 
+    form #email,
+    form #container_vyrobok_model, form #container_vyrobok_cislo, form #container_vyrobok_kategoria, form #container_vyrobok_vyrobca
+    {
+  width: 40%;
+}
+
+form #container_titul, #container_zakaznik_firma_ico,
+  form #container_vyrobok_dat_predaja, form #container_vyrobok_napatie  {
+  width: 20%;
+}
+
+form #container_zakaznik_firma_meno {
+  width: 80%;
+}
+
+form #container_telefon, form #container_fax
+ {
+  width: 30%;
+}
+
+form #container_datum_prijmu, form #container_bude_opravene, form #container_cena_odhad, form #container_prijem_zaloha
+ {
+  width: 25%;
+}
+form #container_psc, form #container_cislo_domu {
+  width: 10%;
+}
+
+form input  {
+  display: block;
+  position: absolute;
+  box-sizing: border-box;
+  width: 100%;
+  border: 0;
+  top: 1.2em;
+  background: none;
+  z-index: 1;
+  padding: 1px;
+  font-size: 1em;
+  font-family: "Calibri", Helvetica, Arial;
+  letter-spacing: 0.018em;
+}
+
+form textarea  {
+  display: block;
+  position: absolute;
+  box-sizing: border-box;
+  width: 100%;
+  height: 4.2em;
+  border: 0;
+  top: 1.2em;
+  background: none;
+  z-index: 1;
+  padding: 1px;
+  font-size: 1em;
+  font-family: "Calibri", Helvetica, Arial;
+  letter-spacing: 0.018em;
+}
+
+
+
+form label {
+  font-family: "Calibri", Helvetica, Arial;
+  display: block;
+  position: absolute;
+  margin-top: 2px;
+  padding: 1px;
+  letter-spacing: 0.018em;
+  color: #618685;
+  font-size: 1em;
+  -webkit-animation-name: labelIn;
+          animation-name: labelIn;
+  -webkit-animation-duration: 0.35s;
+          animation-duration: 0.35s;
+  -webkit-animation-direction: reverse;
+          animation-direction: reverse;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+  -webkit-animation-timing-function: cubic-bezier(0.77, 0, 0.175, 1);
+          animation-timing-function: cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+form input:focus + label, form input:valid + label, 
+form textarea:focus + label, form textarea:valid + label
+         {
+  -webkit-animation-name: labelOut;
+          animation-name: labelOut;
+  -webkit-animation-duration: 0.35s;
+          animation-duration: 0.35s;
+  -webkit-animation-direction: normal;
+          animation-direction: normal;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+  -webkit-animation-timing-function: cubic-bezier(0.77, 0, 0.175, 1);
+          animation-timing-function: cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+
+@-webkit-keyframes labelIn {
+  0% {
+    left: 1px;
+    opacity: 1;
+    top: 1.2em;
+    font-size: 1em;
+    font-weight: 300;
+  }
+  50% {
+    font-size: 1em;
+    left: 1em;
+    opacity: 0;
+    top: 1.2em;
+    font-weight: 300;
+  }
+  50.01% {
+    font-size: 0.65em;
+    left: 1em;
+    opacity: 0;
+    top: 0.2em;
+    color: #0075d5;
+    font-weight: 400;
+  }
+  100% {
+    font-size: 0.65em;
+    opacity: 1;
+    left: 1px;
+    top: 0.2em;
+    color: #0075d5;
+    font-weight: 400;
+  }
+}
+@keyframes labelIn {
+  0% {
+    left: 1px;
+    opacity: 1;
+    top: 1.2em;
+    font-size: 1em;
+    font-weight: 300;
+  }
+  50% {
+    font-size: 1em;
+    left: 1em;
+    opacity: 0;
+    top: 1.2em;
+    font-weight: 300;
+  }
+  50.01% {
+    font-size: 0.65em;
+    left: 1em;
+    opacity: 0;
+    top: 0.2em;
+    color: #0075d5;
+    font-weight: 400;
+  }
+  100% {
+    font-size: 0.65em;
+    opacity: 1;
+    left: 1px;
+    top: 0.2em;
+    color: #0075d5;
+    font-weight: 400;
+  }
+}
+@-webkit-keyframes labelOut {
+  0% {
+    left: 1px;
+    opacity: 1;
+    top: 1.2em;
+    font-size: 1em;
+    font-weight: 300;
+  }
+  50% {
+    font-size: 1em;
+    left: 1em;
+    opacity: 0;
+    top: 1.2em;
+    font-weight: 300;
+  }
+  50.01% {
+    font-size: 0.65em;
+    left: 1em;
+    opacity: 0;
+    top: 0.2em;
+    color: #0075d5;
+    font-weight: 400;
+  }
+  100% {
+    font-size: 0.65em;
+    opacity: 1;
+    left: 1px;
+    top: 0.2em;
+    color: #0075d5;
+    font-weight: 400;
+  }
+}
+@keyframes labelOut {
+  0% {
+    left: 1px;
+    opacity: 1;
+    top: 1.2em;
+    font-size: 1em;
+    font-weight: 300;
+  }
+  50% {
+    font-size: 1em;
+    left: 1em;
+    opacity: 0;
+    top: 1.2em;
+    font-weight: 300;
+  }
+  50.01% {
+    font-size: 0.65em;
+    left: 1em;
+    opacity: 0;
+    top: 0.2em;
+    color: #0075d5;
+    font-weight: 400;
+  }
+  100% {
+    font-size: 0.65em;
+    opacity: 1;
+    left: 1px;
+    top: 0.2em;
+    color: #0075d5;
+    font-weight: 400;
+  }
+}
+form *:focus {
+  outline: 0;
+}
+@-webkit-keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+
+/*PEKNE TLACIDLO KRUHOVE */
+/* zrusenie animacie na elemente s  class="noanimation" a id="noanimation" */
+#noanimation, .noanimation  {
+  -webkit-animation: none !important;
+  -moz-animation: none !important;
+  -o-animation: none !important;
+  animation: none !important;
+  top: 0;
+  margin-top: 0;
+  padding: 0;
+  /*pozor  - nefunguje na IE*/
+  /*
+  all: initial;
+  * {
+    all: unset;
+  }
+  */
+}
+
+
+/*PEKNE TLACIDLO KRUHOVE */
+/* .roundedOne */
+.roundedOne {
+  width: 24px;
+  height: 24px;
+  position: relative;
+  margin: 5px;
+  background: #fcfff4;
+  background: -webkit-linear-gradient(top, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
+  background: linear-gradient(to bottom, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
+  border-radius: 50px;
+  box-shadow: inset 0px 1px 1px white, 0px 1px 3px rgba(0, 0, 0, 0.5);
+}
+.roundedOne label {
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+  position: absolute;
+  left: 4px;
+  top: 4px;
+  background: -webkit-linear-gradient(top, #222222 0%, #45484d 100%);
+  background: linear-gradient(to bottom, #222222 0%, #45484d 100%);
+  border-radius: 50px;
+  box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.5), 0px 1px 0px white;
+}
+.roundedOne label:after {
+  content: '';
+  width: 12px;
+  height: 12px;
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  background: #00ff00;
+  background: -webkit-linear-gradient(top, #00ff00 0%, #145b32 100%);
+  background: linear-gradient(to bottom, #00ff00 0%, #145b32 100%);
+  opacity: 0;
+  border-radius: 50px;
+  box-shadow: inset 0px 1px 1px white, 0px 1px 3px rgba(0, 0, 0, 0.5);
+}
+.roundedOne label:hover::after {
+  opacity: 0.3;
+}
+.roundedOne input[type=checkbox] {
+  visibility: hidden;
+}
+.roundedOne input[type=checkbox]:checked + label:after {
+  opacity: 1;
+  color: #ccc;
+}
+
+/* end .roundedOne */
+
+

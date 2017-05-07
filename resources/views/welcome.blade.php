@@ -4,10 +4,21 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+
 	    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	    <link href="css/overwrite.css" rel="stylesheet"/>
 	    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
 	    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+	    <!-- pri spusteni otvori prihlasovacie okno -->
+
+	    @if (Auth::guest())
+		    <script type="text/javascript">
+		        $(window).on('load',function(){
+			        $('#myModal').modal('show');
+		        });
+		    </script>
+	    @endif
 
         <title>AV Servis</title>
 
@@ -91,17 +102,6 @@
 
         </style>
 
-
-	    {{--
-foreach ( Route::getRotes() as $route )
-{
-echo "<pre>";
-print_r( $route->getPath() );
-echo "</pre>";
-}
---}}
-
-
     </head>
     <body>
 
@@ -112,7 +112,7 @@ echo "</pre>";
             @if (Route::has('login'))
                 <div class="top-right links">
                     @if (Auth::check())
-                        <a href="{{ url('/zakazky') }}">Zákazky</a>
+                        <a href="{{ url('/prijem') }}">Zákazky</a>
                     @else
 		                <!--a href="#" data-toggle="modal" data-target="#loginModal">Prihlásenie</a-->
 		                <!--a href="#" data-toggle="modal" data-target="#registerModal">Registrácia</a-->
