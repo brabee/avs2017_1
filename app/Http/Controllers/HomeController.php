@@ -43,6 +43,7 @@ class HomeController extends Controller
 		$users = DB::table('users')->get();
 		return response()->json($users);
 	}
+
 	/**
 	 * @return \Illuminate\Http\JsonResponse
 	 *
@@ -52,50 +53,23 @@ class HomeController extends Controller
 	 */
 	public function jsonCustomers($id = null)
 	{
-		// $customers = DB::table('customers')->get();
-
-
-/*		$customers = DB::table('customers')
-			->leftJoin('addresses', 'customers.zakaznik_adresa', '=', 'addresses.id')
-			->orderBy('customers.id', 'asc')
-			->get();
-		return response()->json($customers);*/
-
-		/*$customers = DB::table('addresses')
-			->leftJoin('customers', 'customers.zakaznik_adresa', '=', 'addresses.id')
-			->leftJoin('towns', 'towns.id', '=', 'addresses.obec')
-			->orderBy('customers.id', 'asc')
-			->get();
-		return response()->json($customers);*/
-
-
-		/*$customers = DB::table('customers')
-			->select('customers.id', 'customers.zakaznik_priezvisko', 'customers.zakaznik_meno', 'customers.zakaznik_titul')
-			->get();
-		return response()->json($customers);*/
 
 		$query = DB::table('customers')
 			->leftJoin('addresses', 'customers.zakaznik_adresa', '=', 'addresses.id')
 			->leftJoin('towns', 'addresses.obec', '=', 'towns.id')
 			//->select('customers.id', 'addresses.id', 'towns.id')
-			->select('customers.id', 'zakaznik_je_firma', 'customers.zakaznik_priezvisko', 'addresses.ulica', 'towns.obec_nazov')
-			//->orderBy('customers.zakaznik_priezvisko', 'asc')
+			/*->select('customers.id', 'customers.zakaznik_je_firma', 'customers.zakaznik_priezvisko', 'customers.zakaznik_meno',
+					'addresses.ulica', 'addresses.cislo_domu','towns.obec_nazov')*/
+			->orderBy('customers.zakaznik_priezvisko', 'asc')
 			;
 
-		if ( $id != null )
-		{
-			$customers = $query->where('customers.id','=', $id)->get();
-			return response()->json($customers);
+		/** @var TYPE_NAME $customers */
+		$customers = $id != null ? $query->where('customers.id', '=', $id)->get() : $query->get();
 
-		}
-		else
-		{
-			$customers = $query->get();
-			return response()->json($customers);
+		return response()->json([
+			'customers'=>$customers
+		]);
 
-		}
-
-		
 		/*$customers = DB::table('customers')
 			->leftJoin('addresses','addresses.id','=','customers.zakaznik_adresa')
 			->leftJoin('towns',function($join){
@@ -106,6 +80,51 @@ class HomeController extends Controller
 			//->select('customers.id', 'addresses.id', 'towns.id')
 			->get();
 		return response()->json($customers);*/
+	}
+
+	public function jsonProducts($id = null)
+	{
+		$query = DB::table('products')
+			->leftJoin('product_groups', 'products.vyrobok_kategoria', '=', 'product_groups.id')
+			->leftJoin('manufacturers', 'products.vyrobok_vyrobca', '=', 'manufacturers.id')
+			//->select('products.id', 'products.vyrobok_model','product_groups.vyrobok_skupina_kod','manufacturers.vyrobca_meno')//, 'manufacturers.id')
+			//->orderBy('products.vyrobok_cislo', 'asc')
+		;
+
+		/** @var TYPE_NAME $products */
+		$products = $id != null ? $query->where('products.id', '=', $id)->get() : $query->get();
+
+		return response()->json([
+			'products'=>$products
+		]);
+	}
+
+	/**
+	 * @return \Illuminate\Http\JsonResponse|\Illuminate\Support\Collection
+	*/
+	public function jsonData()
+	{
+		$customers = DB::table('customers')
+			->leftJoin('addresses', 'customers.zakaznik_adresa', '=', 'addresses.id')
+			->leftJoin('towns', 'addresses.obec', '=', 'towns.id')
+			//->orderBy('customers.zakaznik_priezvisko', 'asc')
+			->get();
+
+		$products = DB::table('products')
+			->leftJoin('product_groups', 'products.vyrobok_kategoria', '=', 'product_groups.id')
+			->leftJoin('manufacturers', 'products.vyrobok_vyrobca', '=', 'manufacturers.id')
+			//->orderBy('products.vyrobok_cislo', 'asc')
+			->get();
+
+
+		$customers = array('customers' => $customers);
+		$products = array('products' => $products);
+
+		$data = array_merge($customers,$products);
+
+		return response()->json($data);
 
 	}
+
+
 }

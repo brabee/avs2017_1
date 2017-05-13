@@ -28,20 +28,14 @@
 				            </legend>
 
 
-				            <!-- zakaznik - sukromna osoba -->
+				            <!-- zakaznik - sukromna osoba - Datalist -->
 				            <div id="container_sukromna_osoba" style="display:inline;">
 					            <div class="input-container" id="container_zakaznik_priezvisko">
 						            <input type="text" id="zakaznik_priezvisko" name="zakaznik_priezvisko"
 						                   list="udaje_sukromna_osoba" required/>
 						            <label for="zakaznik_priezvisko">Priezvisko</label>
-						            <datalist id="udaje_sukromna_osoba">
-
-						            </datalist>
+						            <datalist id="udaje_sukromna_osoba"></datalist>
 					            </div>
-
-
-
-
 					            <div class="input-container" id="container_zakaznik_meno">
 						            <input type="text" id="zakaznik_meno" name="zakaznik_meno" required/>
 						            <label for="zakaznik_meno">Krstné meno</label>

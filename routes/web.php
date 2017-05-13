@@ -39,13 +39,14 @@ Route::get('/', 'FormModalController@logregmodal')->name('root');
 // route na prijem zakazky
 Route::get('prijem', 'HomeController@prijem');
 
-// json pre users
-//Route::get('users','HomeController@jsonUsers');
+// json pre products
+Route::get('products/{id?}','HomeController@jsonProducts')->name('json_products');
 
 // json pre customers
-Route::get('customers/{id?}', 'HomeController@jsonCustomers');
+Route::get('customers/{id?}', 'HomeController@jsonCustomers')->name('json_customers');
 
-
+// json pre data
+Route::get('data', 'HomeController@jsonData')->name('json_data');
 
 
 
