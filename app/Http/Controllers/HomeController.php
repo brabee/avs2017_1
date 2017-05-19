@@ -65,21 +65,13 @@ class HomeController extends Controller
 
 		/** @var TYPE_NAME $customers */
 		$customers = $id != null ? $query->where('customers.id', '=', $id)->get() : $query->get();
-
-		return response()->json([
+		return response()->json($customers);
+		/*return response()->json([
 			'customers'=>$customers
-		]);
+		]);*/
 
-		/*$customers = DB::table('customers')
-			->leftJoin('addresses','addresses.id','=','customers.zakaznik_adresa')
-			->leftJoin('towns',function($join){
-				$join->on('addresses.obec','=','towns.id');
-				$join->on('customers.zakaznik_adresa','=','addresses.id')
-					->on('addresses.obec','=','towns.id');
-			})
-			//->select('customers.id', 'addresses.id', 'towns.id')
-			->get();
-		return response()->json($customers);*/
+
+
 	}
 
 	public function jsonProducts($id = null)
@@ -93,10 +85,11 @@ class HomeController extends Controller
 
 		/** @var TYPE_NAME $products */
 		$products = $id != null ? $query->where('products.id', '=', $id)->get() : $query->get();
-
-		return response()->json([
+		return response()->json($products);
+		/*return response()->json([
 			'products'=>$products
-		]);
+		]);*/
+
 	}
 
 	/**

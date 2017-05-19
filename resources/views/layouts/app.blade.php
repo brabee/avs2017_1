@@ -15,14 +15,20 @@
 	<link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.4/css/bootstrap.min.css'>
 	<link rel='stylesheet prefetch' href='https://cdn.rawgit.com/tonystar/bootstrap-float-label/v4.0.1/dist/bootstrap-float-label.min.css'>
 
+	<!-- Scripts - ajax/jquery - zo servera-->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
 	<!-- Styles - pekne tlacidla CheckBox, floating labels vo formulari-->
 	<link href="{{ asset('css/style.css') }}" rel="stylesheet">
 
     <!-- Styles povodne stylovanie app.blade.php-->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
-	<!-- Styles - jquery - UI lokalne css -->
+	<!-- Styles - jquery - UI - DatePicker - lokalne css + skripty -->
 	<link rel="stylesheet" href="{{ asset('jquery-ui/jquery-ui.css') }}">
+
+	<!-- Styles - jquery - FlexDatalist - lokalne  css -->
+	<link rel="stylesheet" href="{{ asset('jquery-flexdatalist-1.9.4/jquery.flexdatalist.css') }}">
 
 
     <!-- Scripts -->
@@ -37,7 +43,13 @@
 
 	<!-- Scripts - jquery lokalne skripty -->
 	<script src="{{ asset('js/jquery-1.12.4.js') }}"></script>
+
+	<!-- Scripts + Styles - jquery - UI - DatePicker - lokalne  skripty -->
 	<script src="{{ asset('jquery-ui/jquery-ui.js') }}"></script>
+
+	<!-- Scripts - jquery - FlexDatalist - lokalne skripty -->
+	<script src="{{ asset('jquery-flexdatalist-1.9.4/jquery.flexdatalist.js') }}"></script>
+
 
 	<!-- Scripts- schovavanie a zviditelnovanie labelova containerov od kliknutia CheckBox -->
 	<script src="{{ asset('js/script.js') }}"></script>
@@ -59,8 +71,8 @@
 		$( function() {
 			$( "#bude_opravene" ).datepicker();
 		} );
-
 	</script>
+
 
 
 
@@ -132,8 +144,94 @@
     </div>
 
 
-    {{-- includuje "javascipts.blade", ... --}}
-	@include("javascripts")
+    <!-- Scripts - priradenie id podla odkliknuteho zaznamu v FlexDatalist -->
+    <!-- http://projects.sergiodinislopes.pt/flexdatalist/ -->
+    <script type="text/javascript">
+
+
+
+	    $(document).ready(function(){
+
+
+
+		    $("#zakaznik_priezvisko").on("change:flexdatalist",function(){
+
+
+			    //console.log(typeof jsonObjCustomer =='object');
+			    console.log($('#zakaznik_priezvisko').attr('value'));
+			    console.log("***********************************");
+
+		    	if ($('#zakaznik_priezvisko').attr('value')) {
+				    var jsonObjCustomer = $.parseJSON($('#zakaznik_priezvisko').attr('value'));
+				    //console.log(jsonObjCustomer.zakaznik_meno);
+				    $("#zakaznik_meno").val(jsonObjCustomer.zakaznik_meno);
+				    $("#titul").val(jsonObjCustomer.titul);
+				    $("#obec_nazov").val(jsonObjCustomer.obec_nazov);
+				    $("#psc").val(jsonObjCustomer.psc);
+				    $("#ulica").val(jsonObjCustomer.ulica);
+				    $("#cislo_domu").val(jsonObjCustomer.cislo_domu);
+				    $("#telefon").val(jsonObjCustomer.telefon);
+			    }
+			    else {
+				    $("#zakaznik_meno").val(null);
+				    $("#titul").val(null);
+				    $("#obec_nazov").val(null);
+				    $("#psc").val(null);
+				    $("#ulica").val(null);
+				    $("#cislo_domu").val(null);
+				    $("#telefon").val(null);
+
+			    }
+
+		    });
+
+		    $("#vyrobok_cislo").on("change:flexdatalist",function(){
+			    var jsonObjProduct = $.parseJSON($('#vyrobok_cislo').attr('value'));
+			    //console.log(jsonObjProduct.vyrobok_model);
+			    $("#vyrobok_model").val(jsonObjProduct.vyrobok_model);
+		    });
+
+	    });
+
+	    var FlexDataListId;
+	    var dataJson;
+	    var visibleProperties;
+	    var searchIn;
+
+
+	    /** Nacitanie udajov z odkliknuteho FlexDataList pre customer */
+	    if ($('#zakaznik_priezvisko').attr('id')) {
+		    FlexDataListId = '#zakaznik_priezvisko';
+		    dataJson = '{{ route('json_customers') }}';
+		    visibleProperties = ["zakaznik_priezvisko", "zakaznik_meno", "obec_nazov", "ulica", "cislo_domu"];
+		    searchIn = 'zakaznik_priezvisko';
+		    fillFlexDataList (FlexDataListId,dataJson,visibleProperties,searchIn);
+	    }
+
+	    /** Nacitanie udajov z odkliknuteho FlexDataList pre product */
+	    if ($('#vyrobok_cislo').attr('id')) {
+			FlexDataListId = '#vyrobok_cislo';
+		    dataJson = '{{ route('json_products') }}';
+		    visibleProperties = ["vyrobok_cislo","vyrobok_model"];
+		    searchIn = 'vyrobok_cislo';
+		    fillFlexDataList (FlexDataListId,dataJson,visibleProperties,searchIn);
+	    }
+
+	    /** spolocna funkcia pre vratenie udajov z odkliknuteho riadku FlexDataList */
+		function fillFlexDataList (FlexDataListId,dataJson,visibleProperties,searchIn) {
+			$(FlexDataListId).flexdatalist({
+				minLength: 0,
+				valueProperty: '*',
+				selectionRequired: true,
+				visibleProperties: visibleProperties,
+				searchIn: searchIn,
+				data: dataJson
+
+			})
+
+		}
+
+    </script>
 
 
 

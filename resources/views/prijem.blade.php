@@ -31,10 +31,16 @@
 				            <!-- zakaznik - sukromna osoba - Datalist -->
 				            <div id="container_sukromna_osoba" style="display:inline;">
 					            <div class="input-container" id="container_zakaznik_priezvisko">
-						            <input type="text" id="zakaznik_priezvisko" name="zakaznik_priezvisko"
+						            {{--<input type="text" id="zakaznik_priezvisko" name="zakaznik_priezvisko"
 						                   list="udaje_sukromna_osoba" required/>
 						            <label for="zakaznik_priezvisko">Priezvisko</label>
-						            <datalist id="udaje_sukromna_osoba"></datalist>
+						            <datalist id="udaje_sukromna_osoba"></datalist>--}}
+						            <input required
+						                   class='flexdatalist'
+						                   id='zakaznik_priezvisko'
+						                   name='zakaznik_priezvisko'
+						                   type='text'>
+						            <label for="zakaznik_priezvisko">Priezvisko</label>
 					            </div>
 					            <div class="input-container" id="container_zakaznik_meno">
 						            <input type="text" id="zakaznik_meno" name="zakaznik_meno" required/>
@@ -101,12 +107,16 @@
 
 				            <!-- model vyrobku, vyr. cislo, napatie -->
 				            <div class="input-container" id="container_vyrobok_cislo">
-					            <input type="text" id="vyrobok_cislo" name="vyrobok_cislo"
+					            {{--<input type="text" id="vyrobok_cislo" name="vyrobok_cislo"
 					                   list="serial_numbers" required/>
 					            <label for="vyrobok_cislo">Výrobné číslo</label>
-					            <datalist id="serial_numbers"></datalist>
-
-
+					            <datalist id="serial_numbers"></datalist>--}}
+					            <input required
+					                   class='flexdatalist'
+					                   id='vyrobok_cislo'
+					                   name='vyrobok_cislo'
+					                   type='text'>
+					            <label for="vyrobok_cislo">Výrobné číslo</label>
 				            </div>
 				            <div class="input-container" id="container_vyrobok_model">
 					            <input type="text" id="vyrobok_model" name="vyrobok_model" required/>
@@ -241,9 +251,6 @@
 
 		            </form>
 	            </div>
-
-	            <!-- naplni datalist datami z json -->
-	            {{--<script src="{{ asset('js/index.js')}}"></script>--}}
 
             </div>
         </div>
