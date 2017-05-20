@@ -118,6 +118,18 @@ class HomeController extends Controller
 		return response()->json($data);
 
 	}
+	public function jsonTowns($id = null)
+	{
+		$query = DB::table('towns')
+			->orderBy('towns.obec_nazov', 'asc')
+		;
 
+		$towns = $id != null ? $query->where('towns.id', '=', $id)->get() : $query->get();
+		return response()->json($towns);
+		/*return response()->json([
+			'towns'=>$towns
+		]);*/
+
+	}
 
 }

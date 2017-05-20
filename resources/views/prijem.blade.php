@@ -68,7 +68,12 @@
 
 				            <!-- zakaznik - adresa -->
 				            <div class="input-container" id="container_obec_nazov">
-					            <input type="text" id="obec_nazov" name="obec_nazov" required/>
+					            <!-- input type="text" id="obec_nazov" name="obec_nazov" required/ -->
+								<input required
+						                   class='flexdatalist'
+						                   id='obec_nazov'
+						                   name='obec_nazov'
+						                   type='text'>					            
 					            <label for="obec_nazov">Mesto/obec</label>
 				            </div>
 				            <div class="input-container" id="container_psc">

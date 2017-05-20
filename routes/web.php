@@ -33,8 +33,11 @@ echo '<pre>';
 
 // * Register the typical authentication routes for an application.
 Auth::routes();
+
 // prihlasovacie modalne okno
 Route::get('/', 'FormModalController@logregmodal')->name('root');
+
+//Route::get('logout', 'FormModalController@logout')->name('logout');
 
 // route na prijem zakazky
 Route::get('prijem', 'HomeController@prijem');
@@ -47,6 +50,9 @@ Route::get('customers/{id?}', 'HomeController@jsonCustomers')->name('json_custom
 
 // json pre data
 Route::get('data', 'HomeController@jsonData')->name('json_data');
+
+// json pre towns
+Route::get('towns/{id?}', 'HomeController@jsonTowns')->name('json_towns');
 
 
 
